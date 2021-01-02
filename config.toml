@@ -1,0 +1,32 @@
+theme = "my_hugo_theme"
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "tuket"
+pygmentsUseClasses = true
+PygmentsCodeFences = true
+math = true
+defaultMarkdownHandler = "goldmark"
+
+[markup.goldmark.renderer]
+    unsafe = true # this is so we can embed HTML in markdown
+
+# Header
+[[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 2 
+[[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 1
+[[menu.main]]
+    name = "Portfolio"
+    url = "/portfolio/"
+    weight = 3
+[[menu.feed]]
+    name = "RSS"
+    url = "/index.xml"
+
+# Footer
+[params]
+    footer = "<a href=\"https://github.com/tuket\"><img src=\"/img/github_icon.svg\" width=\"18\" height=\"18\" alt=\"github\"></a> <a href=\"https://www.linkedin.com/in/tuket/\"><img src=\"/img/linkedin_icon.svg\" width=\"18\" height=\"18\" alt=\"linkedin\"> <a href=\"mailto:tuket.webpage.0@gmail.com\"><img src=\"/img/email_icon.svg\" width=\"18\" height=\"18\" alt=\"email\"></a>"
