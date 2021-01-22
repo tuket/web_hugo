@@ -2,7 +2,6 @@
 layout: post
 title: Sorting multiple vectors in the same way using C++ variadic templates
 date: 2017-09-30
-published: true
 ---
 
 Let's imagine we have a table like shown below. In this simple example we have information about people organized in rows.

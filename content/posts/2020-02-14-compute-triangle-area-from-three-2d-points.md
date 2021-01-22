@@ -2,7 +2,6 @@
 layout: post
 title: Compute triangle area from three 2D points (fast way)
 date: 2020-02-14
-published: true
 ---
 TLDR: code is at the end.
 

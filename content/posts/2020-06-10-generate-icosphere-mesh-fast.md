@@ -2,7 +2,6 @@
 layout: post
 title: Generate icosphere mesh fast
 date: 2020-06-10
-published: true
 ---
 If you seach in the Internet for algorithms to generate icosphere meshes, most algorithms out there take an icosahedron and keep tessellating the triangular faces recursivelly ([link](https://www.researchgate.net/figure/Spherical-tessellation-grids-and-parent-daughter-triangle-relationships-The-initial_fig5_253252594 "link")).
 

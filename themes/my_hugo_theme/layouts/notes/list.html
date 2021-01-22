@@ -1,0 +1,9 @@
+{{ partial "header.html" . }}
+<div class="content-wrapper">
+{{if not .IsHome }}
+  <a href="../">&lt;&lt; ../</a>
+  <h1>{{ .Title | markdownify }}</h1>
+  {{ end }}
+  {{ .Content }}
+</div>
+{{ partial "footer.html" . }}

@@ -2,7 +2,6 @@
 layout: post
 title: Nifty hidden shapes in a Codejam problem
 date: 2018-10-13
-published: true
 ---
 I was trying to solve a problem called [_How Big Are the Pockets?_](https://codejam.withgoogle.com/codejam/contest/32002/dashboard) from Codejam.
 

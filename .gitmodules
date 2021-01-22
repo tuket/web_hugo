@@ -1,0 +1,4 @@
+[submodule "public"]
+	path = public
+	url = https://tuket@github.com/tuket/tuket.github.io.git
+	branch = master

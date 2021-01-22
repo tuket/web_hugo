@@ -2,7 +2,6 @@
 layout: post
 title: The Curse of Magin
 date: 2017-07-09
-published: true
 ---
 
 We developed a game for a school subject called the curse of Magin.

@@ -1,8 +1,7 @@
 {{ partial "header.html" . }}
-<br>
+<a href="../">&lt;&lt; ../</a>
 <div class="article-meta">
 <h1><span class="title">{{ .Title | markdownify }}</span></h1>
-{{ if .Params.date }}<p class="date" style="margin-top: 1px;margin-bottom: 1px">{{ .Date.Format "2006/01/02" }}</h2>{{ end }}
 </div>
 
 {{ if .Params.toc }}

@@ -2,7 +2,6 @@
 layout: post
 title: Sending emails with C++ and GMail
 date: 2018-09-03
-published: true
 ---
 
 In this post I'm going to show how to send emails using C++ and a GMail account.
