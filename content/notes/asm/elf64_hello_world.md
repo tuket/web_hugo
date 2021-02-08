@@ -11,13 +11,13 @@ So I though I would make an executable by hand, where every bit in it is underst
 
 I found the [wikepedia article](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format) on the ELF format to be quite handy, although I also had to look up other resorces (all of them at the end).
 
-The executable comtains only one program segment that contains both code and data. There are no sections. Segments and sections different things[^so_section_vs_segment] [^section_vs_segment_ciro].
+The executable has only one program segment that contains both code and data. There are no sections. Segments and sections are different things[^so_section_vs_segment] [^section_vs_segment_ciro].
 
 I also read [this article](https://www.muppetlabs.com/~breadbox/software/tiny/teensy.html) about making the smallest possible ELF32 executable that returns 42. Lots of tricks are used in order to make the executable as small a possible, even some that abuse the ELF format spec, like overlapping different sections. We are not going to go as far, just try to make the simplest hello world. Also, I'm going to make an ELF64 instead. There is also [this post](https://stackoverflow.com/questions/53382589/smallest-executable-program-x86-64) in StackOverflow where they also try to make the smallest possible ELF64.
 
 We could make our executable by typing it in a hex editor. But there are other more convenient ways.
 
-In the resources just mentioned, they use NASM with a special flag `-f bin`. With this flag, only what is specified in the `.asm` source file will appear in the output binary file (when we compile normaly, NASM creates for you the ELF headers and so on). This is what one of this `.asm` files would look like (copied from the StackOverflow post):
+In the resources just mentioned, they use NASM with a special flag `-f bin`. With this flag, only what is specified in the `.asm` source file will appear in the output binary file (when we compile normaly, NASM creates for you the ELF headers and so on). This is what one of this `.asm` files would look like (copied from the forementioned StackOverflow post):
 
 ```nasm
 bits 64
@@ -185,7 +185,7 @@ int main()
 }
 ```
 
-Inside the [Program header](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format#Program_header), I struggled a lot with the `p_offset` field ([and I'm not the only one](https://cirosantilli.com/elf-hello-world#p-191)). If you didn't notice the value of `p_offset` is 0. But the [spec](https://refspecs.linuxbase.org/elf/gabi4+/ch5.pheader.html) says:
+Inside the [Program header](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format#Program_header), I struggled a lot with the `p_offset` field ([and I'm not the only one](https://cirosantilli.com/elf-hello-world#p-191)). If you didn't notice, the value of `p_offset` is 0. But the [spec](https://refspecs.linuxbase.org/elf/gabi4+/ch5.pheader.html) says:
 > This member gives the offset from the beginning of the file at which the first byte of the segment resides
 
 And our executable layout looks like this:

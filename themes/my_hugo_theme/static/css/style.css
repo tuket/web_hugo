@@ -57,6 +57,11 @@ a:hover {
   text-decoration: underline;
 }
 
+p {
+  margin-top: 0.8em;
+  margin-bottom: 0.15em;
+}
+
 /* Adjust background at your leisure! */
 header {
     position: relative;
@@ -90,11 +95,19 @@ header .current a {
 /* Code Boxes */
 pre {
   line-height: 1.25em;
-  border: 1px solid #ddd;
+  border: 1px solid #0d0;
   padding: 0.5em;
   overflow-x: auto;
+  margin: 2px;
 }
-pre code { background: none; }
+pre code {
+  background: none;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+div .highlight {
+  margin-: 2px;
+}
 
 /* Images, tables, misc. */
 img, iframe, video {
