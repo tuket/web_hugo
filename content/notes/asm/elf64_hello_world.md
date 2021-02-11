@@ -197,7 +197,7 @@ And our executable layout looks like this:
 So shouldn't `p_offset` be 64+56=120?
 
 That would make sense but there is a little problem.
-The ELF spec say the following about `p_align`:
+The ELF spec says the following about `p_align`:
 > This member holds the value to which the segments are
 > aligned in memory and in the file.  Loadable process
 > segments must have congruent values for p_vaddr and
@@ -206,7 +206,7 @@ The ELF spec say the following about `p_align`:
 > be a positive, integral power of two, and p_vaddr should
 > equal p_offset, modulo p_align.
 
-The key is in "p_vaddr should equal p_offset, modulo p_align". In our case, `p_vaddr` is `0x400000` which is the usual address for x64 processes[^linux_usual_proc_addr]. If had `p_offset==120`, that the alignment rule would be violated, since we have a `p_align` of `0x1000`.
+The key is in "p_vaddr should equal p_offset, modulo p_align". In our case, `p_vaddr` is `0x400000` which is the usual address for x64 processes[^linux_usual_proc_addr]. If we had `p_offset==120`, the alignment rule would be violated, since we have a `p_align` of `0x1000`.
 
 And the obvious question is: why we don't just decrease the alignment? ... The Linux kernel has a minimum alignment that is usually the page size. I believe that the page size is usually 4KB. So we would have to add padding after the headers to align up to 4KB. That would make the executable much bigger; therefore we opted to just include the headers in the segment, and set the entry point to `0x400000 + 120`.
 
