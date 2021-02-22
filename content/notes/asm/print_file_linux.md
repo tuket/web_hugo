@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Print the contents of a file in Linux
+date: 2021-01-23
 ---
 
 ```nasm

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: GDB commands for Assembly
+date: 2021-02-08
 ---
 
 Start up:

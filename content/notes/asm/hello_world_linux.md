@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Hello world in Linux
+date: 2021-01-23
 ---
 
 This is a minimal hello world program in Linux. It doesn't need to link any external libraries.

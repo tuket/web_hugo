@@ -1,6 +1,7 @@
 ---
 layout: page
 title: ELF64 hello world
+date: 2021-02-10
 ---
 
 I like to understand how things work under the hood. Assembly programming is very close to the metal but, even then, the assembler hides some complexity to make our lives easier. Also the linker does lots of work I don't completely understand.
