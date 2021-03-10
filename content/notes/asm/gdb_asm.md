@@ -11,7 +11,7 @@ gdb exe
 
 Enter TUI mode:
 ```
-Ctrl+A, Ctrl+A
+Ctrl+X, Ctrl+A
 ```
 
 Switch to assembly mode:
