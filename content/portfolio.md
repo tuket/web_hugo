@@ -11,8 +11,10 @@ published: true
 Work in progress...
 
 This is a simple viewer for the glTF format.<br>
-Hosted in [github](https://github.com/tuket/gltf_viewer).
+Hosted in [github](https://github.com/tuket/gltf_viewer). Watch [video](https://youtu.be/oQv0AQ8G-BI).
 ![glTF viewer](/img/gltf_viewer.png)
+
+<!--<video controls src="/vid/gltf_viewer_box_anim.mp4" poster="/img/gltf_viewer.png"></video>-->
 
 ---
 
