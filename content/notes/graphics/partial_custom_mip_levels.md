@@ -1,7 +1,8 @@
 ---
 layout: page
 title: Partial custom mipmap levels in OpenGL
-date: 2021-02-22
+date: {}
+published: true
 ---
 
 OpenGL allows to automatically create mipmaps for you with `glGenMipmap`.
@@ -40,7 +41,7 @@ glGenerateMipmap(GL_TEXTURE_2D);
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
 ```
 
-If you find some textures look tilted, it could be that your texture rows are not 4-byte aligned for higher mips. Try if doing this fixes you problem:
+If you find some textures look tilted, it could be that your texture rows are not 4-byte aligned for higher mips. Try if doing this fixes your problem:
 
 ```c
 glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
