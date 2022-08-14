@@ -7,6 +7,8 @@ date: 2022-08-05T21:15:50+02:00
 
 I'm going to explain a technique that I implemented for the explosion decals of my game.
 
+**Demo** available in this [github repo](https://github.com/tuket/explosion_decals).
+
 ![demo.jpg](/img/explosion_decals/demo.jpg)
 
 Many games have the need to splat textures on to surfaces dynamically. For example, we might have a floor and we would like to splat some blood onto it when a character has been hurt.
