@@ -29,7 +29,7 @@ My technique uses a different approach to that of directional decals. But I will
 - https://bartwronski.com/2015/03/12/fixing-screen-space-deferred-decals/
 - https://martindevans.me/game-development/2015/02/27/Drawing-Stuff-On-Other-Stuff-With-Deferred-Screenspace-Decals/
 
-# Radial Decals
+# Spherical Decals
 
 The technique I'm going to explain here has been designed for a very specific use case in my game: explosions. This is a screenshot of what my game currently looks like.
 
@@ -39,7 +39,7 @@ Notice that the game has a top down camera. This is relevant because, as will ex
 
 I'm not an artist, and I work alone in this game, so I aimed for a procedural technique. We will make use prodedural noise.
 
-Directional decals project along one direction, radial decals project in all directions. Think of directional lights vs point lights.
+Directional decals project along one direction, spherical decals project in all directions. Think of directional lights vs point lights.
 
 <img src="/img/explosion_decals/diag_0.svg" width="80%"/>
 
