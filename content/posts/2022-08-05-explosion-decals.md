@@ -62,7 +62,7 @@ As you can see in the previous picture, when the camera has more inclination, th
 Another important detail to take into account is: what happens when the camera is inside the sphere? If we have depth testing enabled, or backface culling enabled, it won't draw anything! If in your game it's possible that the camera enters the radius of the decals, you can do the following:
 
 - Always disable **writing** to the depth buffer. This applies regardless the camera can be inside the radius of decals or not.
-- Invert backface culling: cull external faces, instead of internal faces ([glCullFace(GL_FRONT) instead of glCullFace(GL_BACK)](https://registry.khronos.org/OpenGL-Refpages/gl4/html/glCullFace.xhtml)). This is so the sphere is visible even when we are inside it.
+- Invert backface culling: cull external faces, instead of internal faces ([glCullFace(GL_FRONT) instead of glCullFace(GL_BACK) if you are using OpenGL](https://registry.khronos.org/OpenGL-Refpages/gl4/html/glCullFace.xhtml)). This is so the sphere is visible even when we are inside it.
 - Keep depth test enabled but invert the test function ([use GL_GREATER instead of GL_LESS if you are using OpenGL](https://registry.khronos.org/OpenGL-Refpages/es2.0/xhtml/glDepthFunc)).
 
 ## Procedural noise
@@ -91,4 +91,4 @@ Also I added an additive constant to make it look darker specially at the center
 
 ### Adding some variety
 
-With this approach, all the decals will look the same because they sample the same noise map. The obvious solution is having multiple noise environemnt maps. But this is not needed at all. Just assign a random rotation matrix to each decal, and use it to rotate the sampling vector. It's just one matrix multiplication: `sampleDir = rotationMtx * sampleDir;`.
+With this approach, all the decals will look the same because they sample the same noise map. The obvious solution is having multiple noise environment maps. But this is not needed at all. Just assign a random rotation matrix to each decal, and use it to rotate the sampling direction. It's just one matrix multiplication: `sampleDir = rotationMtx * sampleDir;`.
