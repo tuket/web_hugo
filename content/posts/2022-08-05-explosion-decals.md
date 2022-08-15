@@ -35,7 +35,7 @@ The technique I'm going to explain here has been designed for a very specific us
 
 ![evil robots](/img/explosion_decals/evil_robots.png)
 
-Notice that the game has a top down camera. This is relevant because, as will explain later, this has specially good performance in this scenario.
+Notice that the game has a top down camera. This is relevant because, as will explain later, this technique has specially good performance in this scenario.
 
 I'm not an artist, and I work alone in this game, so I aimed for a procedural technique. We will make use prodedural noise.
 
@@ -49,7 +49,7 @@ For each decal we will draw a sphere.
 
 ![1.gif](/img/explosion_decals/1.gif)
 
-But we actually don't need to draw the whole sphere; only the intersection of the sphere with floor and other object static objets in the scene.
+But we actually don't need to draw the whole sphere; only the intersection of the sphere with the floor and other object static objects in the scene.
 
 ![2.gif](/img/explosion_decals/2.gif)
 
@@ -62,7 +62,7 @@ As you can see in the previous picture, when the camera has more inclination, th
 Another important detail to take into account is: what happens when the camera is inside the sphere? If we have depth testing enabled, or backface culling enabled, it won't draw anything! If in your game it's possible that the camera enters the radius of the decals, you can do the following:
 
 - Always disable **writing** to the depth buffer. This applies regardless the camera can be inside the radius of decals or not.
-- Disable backface culling.
+- Invert backface culling: cull external faces, instead of internal faces ([glCullFace(GL_FRONT) instead of glCullFace(GL_BACK)](https://registry.khronos.org/OpenGL-Refpages/gl4/html/glCullFace.xhtml)). This is so the sphere is visible even when we are inside it.
 - Keep depth test enabled but invert the test function ([use GL_GREATER instead of GL_LESS if you are using OpenGL](https://registry.khronos.org/OpenGL-Refpages/es2.0/xhtml/glDepthFunc)).
 
 ## Procedural noise
