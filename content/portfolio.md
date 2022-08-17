@@ -2,6 +2,7 @@
 layout: page
 title: Portfolio
 published: true
+comments: false
 ---
 **Disclaimer**: many of these projects were done when I was very noob. Even if I provide download links and code, please don't take it as reference since it is probably of very bad quality. Anyway, it might be useful for learning how not to do things and laughing (that's what I do).
 
@@ -20,7 +21,7 @@ Hosted in [github](https://github.com/tuket/gltf_viewer). Watch [video](https://
 
 ## Raytracer
 
-I implemented this raytracer with Monte Carlo stimation and importance sampling for a college subject. Implemented microfacet materials, reflections, refractions, area lights, etc. Programmed with C++.
+I implemented this raytracer with Monte Carlo estimation and importance sampling for a college subject. Implemented microfacet materials, reflections, refractions, area lights, etc. Programmed with C++.
 
 ![raytracer](http://i.imgur.com/fy5IgQM.jpg)
 

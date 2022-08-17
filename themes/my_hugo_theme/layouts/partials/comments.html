@@ -1,0 +1,10 @@
+{{ if or (not (isset .Params "comments")) (.Params.comments) }}
+<script src="https://utteranc.es/client.js"
+  repo="tuket/tuket.github.io"
+  issue-term="pathname"
+  label="💬💬"
+  theme="gruvbox-dark"
+  crossorigin="anonymous"
+  async>
+</script>
+{{ end }}

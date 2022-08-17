@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Notes
+comments: false
 ---
 
 These are my notes on different topics
