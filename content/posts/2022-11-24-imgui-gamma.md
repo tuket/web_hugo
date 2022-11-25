@@ -11,7 +11,7 @@ Recently, I have started using ImGui wih Vulkan and noticed that the colors look
 
 Googling how to solve my problem, I found lots of people with similar experiences([^prob0], [^prob1], [^prob2]).
 
-[SKIP BLAHBLAH AND GO TO THE GOOD SOLUTION](#he-actual-good-fix)
+[SKIP BLAHBLAH AND GO TO THE GOOD SOLUTION](#the-actual-good-fix)
 
 ### Dumb solution
 One of the solutions people suggested is to create the swapchain images in linear RGB, instead of sRGB. That's obviously not a good solution, because our own application beneffits from using sRGB compression to avoid banding issues. But it does indeed fix the issue with ImGui so it confirms out suspicions about gamma correction being the culprit.
