@@ -11,6 +11,8 @@ comments: false
 
 Work in progress...
 
+![Evil Robots Gameplay](/img/evil_robots_gameplay.png)
+
 A complete indie game made by me.
 
 I did all the design, programming, and art myself... made me realize I suck as an artist haha.
