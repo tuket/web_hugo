@@ -2,7 +2,7 @@
 layout: page
 title: Vulkan cheatsheet
 date: 2021-05-15
-published: false
+published: true
 ---
 
 ## Enumerating layers

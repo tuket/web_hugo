@@ -7,6 +7,23 @@ comments: false
 **Disclaimer**: many of these projects were done when I was very noob. Even if I provide download links and code, please don't take it as reference since it is probably of very bad quality. Anyway, it might be useful for learning how not to do things and laughing (that's what I do).
 
 ---
+## Evil Robots
+
+Work in progress...
+
+A complete indie game made by me.
+
+I did all the design, programming, and art myself... made me realize I suck as an artist haha.
+
+In this game robots have turned evil, you have to defend yourself from their attacks for as long a you can.
+
+You can play in coop mode, either localy, or online!
+
+{{< youtube ruZQYHcoXos >}}
+
+The game will be released in Steam very soon. Nintendo Switch version is also expected in the future.
+
+
 ## glTF viewer
 
 Work in progress...

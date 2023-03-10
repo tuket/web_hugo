@@ -2,7 +2,8 @@
 layout: page
 title: Vulkan Concepts
 date: 2022-08-23
-published: false
+published: true
+toc: true
 ---
 
 ## Host & Device
@@ -11,7 +12,7 @@ published: false
 
 **Device** refers to the GPU.
 
-In Vulkan, the **host** send commands to be executed by the **device**. The execution is asynchronous, so you need to be careful  and use the explicit synchronization mechanisms that Vulkan provides.
+In Vulkan, the **host** send commands to be executed by the **device**. The execution is asynchronous, so you need to be careful and use the explicit synchronization mechanisms that Vulkan provides.
 
 ## Vulkan instance
 
@@ -87,3 +88,57 @@ Is a collection of:
 
 The **host** and the **device** can access memory though buses.
 
+## Memory availability and visibility
+
+```goat
++-----------+           |          +-----------+
+| AVAILABLE |<----------+--------->| AVAILABLE |
++-----------+           |          +-----------+
+   |     ^              |                
+   v     |              |
++-----------+           |
+|  VISIBLE  |           |
++-----------+           |
+      ^                 |
+      |                 |
+      v                 |
++-----------+           |
+|    HOST   |           |
++-----------+           |
+
+```
+
+## Links
+
+- [What is the pipeline a vkCmdPipelineBarrier applies to?](https://stackoverflow.com/questions/49237258/what-is-the-pipeline-a-vkcmdpipelinebarrier-applies-to)
+- [Host write guarantees source access scope](https://stackoverflow.com/questions/61342339/host-write-guarantees-source-access-scope)
+- [Yet another blog explaining Vulkan synchronization - Maister](https://themaister.net/blog/2019/08/14/yet-another-blog-explaining-vulkan-synchronization/)
+- [Vulkan: vkCmdPipelineBarrier for data coherence](https://stackoverflow.com/questions/40577047/vulkan-vkcmdpipelinebarrier-for-data-coherence)
+
+## Images
+
+Q: Let say I allocated memory for a `VkImage` and it turns out to be `HOST_VISIBLE`. Can I just `vkMapMemory` and write directly to it? Even if the image is `TILING_OPTIMAL`?
+
+A:
+
+According to the spec:
+
+>Upon creation, all image subresources of an image are initially in the same layout, where that
+layout is selected by the VkImageCreateInfo::initialLayout member. The initialLayout must be either
+VK_IMAGE_LAYOUT_UNDEFINED or VK_IMAGE_LAYOUT_PREINITIALIZED. If it is VK_IMAGE_LAYOUT_PREINITIALIZED, then the image data can be preinitialized by the host while using this layout, and the transition away from this layout will preserve that data. If it is VK_IMAGE_LAYOUT_UNDEFINED, then the contents of the data are considered to be undefined, and the transition away from this layout is not guaranteed to preserve that data. For either of these initial layouts, any image subresources must be transitioned to another layout before they are accessed by the device.
+>
+> Host access to image memory is only well-defined for linear images and for image subresources of those images which are currently in either the VK_IMAGE_LAYOUT_PREINITIALIZED or VK_IMAGE_LAYOUT_GENERAL layout. Calling vkGetImageSubresourceLayout for a linear image returns a subresource layout mapping that is valid for either of those image layouts.
+
+So not possible for `TILING_OPTIMAL`, but possible for `TILING_LINEAR`.
+
+Additionally, the image layout needs to be `PREINITIALIZED` or `GENERAL`.
+
+However, for textures, we want to use `TILING_OPTIMAL` because:
+- Has better performance
+- Linear tiling might not even be supported for sampling
+
+In practice, this means that it's not possible to fill a texture without a staging buffer.
+
+You could use a staging `TILING_LINEAR` image to fill a `TILING_OPTIMAL` image. But this is not a good idea because this is not supported for compressesed format. Using a staging buffer supports both compressed and non-compressed formats, so it's a better approach for code simplicity.
+
+We can use the `VK_EXT_external_memory_host` extension to bind a host data pointer directly to a `VkBuffer`. That would allow us to save a `memcpy`! ([link](https://stackoverflow.com/questions/71626199/can-you-transfer-directly-to-an-image-without-using-an-intermediary-buffer))
