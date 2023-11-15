@@ -15,6 +15,8 @@ A complete indie game made by me.
 
 I did all the design, programming, and art myself... made me realize I suck as an artist haha.
 
+Made with C++20 and OpenGL 4.3.
+
 In this game robots have turned evil, you have to defend yourself from their attacks for as long a you can.
 
 You can play in coop mode, either localy, or online!
