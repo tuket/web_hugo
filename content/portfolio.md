@@ -24,6 +24,11 @@ You can play in coop mode, either localy, or online!
 Evil Robots is available on [Steam](https://store.steampowered.com/app/2438460/Evil_Robots).
 
 
+## reproject
+
+A small cmd line tool to reproject textures: cubemap<-->latlong. [Github](https://github.com/tuket/reproject)
+![](https://github.com/tuket/reproject/raw/master/data/reproject.png)
+
 ## glTF viewer
 
 Work in progress...
