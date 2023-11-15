@@ -72,7 +72,7 @@ Is a collection of:
   - stencilLoadOp, stencirStoreOp: same but for the stencil attachment
   - initialLayout:
   - finalLayout: 
-- Subpasses. Deescription of the subpasses:
+- Subpasses. Description of the subpasses:
   - pieplineBindPoint: GRAPHICS/COMPUTE
   - inputAttachments: references to attachments that are read
   - colorAttachments: references to attachments that are written
@@ -85,6 +85,29 @@ Is a collection of:
   - srcStageMask (precisely which pipeline stage)
   - dstStageMask
   - dependencyFlags: VK_DEPENDENCY_BY_REGION_BIT is interesting for tile-based GPUs because it indicates that you don't need to finish all tiles before stating next subpass
+
+### RenderPass compatibility
+Framebuffers and graphics pipelines are created based on a specific render pass object.
+
+They must only be used with that render pass object, or one compatible with it.
+
+Two attachment references are compatible if they have matching format and sample count, or are both VK_ATTACHMENT_UNUSED or the pointer that would contain the reference is NULL.
+
+Two arrays of attachment references are compatible if all corresponding pairs of attachments are
+compatible. If the arrays are of different lengths, attachment references not present in the smaller
+array are treated as VK_ATTACHMENT_UNUSED.
+
+Two render passes are compatible if their corresponding color, input, resolve, and depth/stencil
+attachment references are compatible and if they are otherwise identical except for:
+• Initial and final image layout in attachment descriptions
+• Load and store operations in attachment descriptions
+• Image layout in attachment references
+
+As an additional special case, if two render passes have a single subpass, the resolve attachment
+reference and depth/stencil resolve mode compatibility requirements are ignored.
+
+A framebuffer is compatible with a render pass if it was created using the same render pass or a
+compatible render pass.
 
 The **host** and the **device** can access memory though buses.
 
@@ -142,3 +165,30 @@ In practice, this means that it's not possible to fill a texture without a stagi
 You could use a staging `TILING_LINEAR` image to fill a `TILING_OPTIMAL` image. But this is not a good idea because this is not supported for compressesed format. Using a staging buffer supports both compressed and non-compressed formats, so it's a better approach for code simplicity.
 
 We can use the `VK_EXT_external_memory_host` extension to bind a host data pointer directly to a `VkBuffer`. That would allow us to save a `memcpy`! ([link](https://stackoverflow.com/questions/71626199/can-you-transfer-directly-to-an-image-without-using-an-intermediary-buffer))
+
+## Pipeline layout
+
+To crate a pipeline layout you need:
+- []VkDescriptorSetLayout
+- []VkPushConstantRange
+
+## Descriptor set layout
+
+To create a VkDescriptorSetLayout you need:
+- flags: 
+  - CREATE_UPDATE_AFTER_BIND_POOL_BIT (1.2)
+  - CREATE_PUSH_DESCRIPTOR_BIT_KHR (VK_KHR_push_descriptor)
+- []VkDescriptorSetLayoutBinding
+
+```c++
+struct VkDescriptorSetLayoutBinding {
+    uint32_t binding;
+    VkDescriptorType descriptorType;
+    uint32_t descriptorCount;
+    VkShaderStageFlags stageFlags;
+    const VkSampler* pImmutableSamplers;
+}
+```
+
+## Pipelines
+

@@ -9,9 +9,7 @@ comments: false
 ---
 ## Evil Robots
 
-Work in progress...
-
-![Evil Robots Gameplay](/img/evil_robots_gameplay.png)
+![Evil Robots Gameplay](https://cdn.cloudflare.steamstatic.com/steam/apps/2438460/ss_88572b4b2b60ff0e6769795e31c77ff61682a6ac.1920x1080.jpg?t=1699541779)
 
 A complete indie game made by me.
 
@@ -21,9 +19,9 @@ In this game robots have turned evil, you have to defend yourself from their att
 
 You can play in coop mode, either localy, or online!
 
-{{< youtube ruZQYHcoXos >}}
+{{< youtube qHa3GijDhZs >}}
 
-The game will be released in Steam very soon. Nintendo Switch version is also expected in the future.
+Evil Robots is available on [Steam](https://store.steampowered.com/app/2438460/Evil_Robots).
 
 
 ## glTF viewer
