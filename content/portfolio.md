@@ -29,7 +29,7 @@ Evil Robots is available on [Steam](https://store.steampowered.com/app/2438460/E
 ## reproject
 
 A small cmd line tool to reproject textures: cubemap<-->latlong. [Github](https://github.com/tuket/reproject)
-![](https://github.com/tuket/reproject/raw/master/data/reproject.png)
+![](https://github.com/tuket/reproject/raw/master/data/reproject.png), [itch.io](https://tuket.itch.io/reproject).
 
 ## glTF viewer
 
