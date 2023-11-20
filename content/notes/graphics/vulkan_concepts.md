@@ -190,5 +190,133 @@ struct VkDescriptorSetLayoutBinding {
 }
 ```
 
+## Memory alignment rules
+
+- We can consider matrices as column-major
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Row_and_column_major_order.svg/180px-Row_and_column_major_order.svg.png)
+
+- In GLSL, a matrix type `matCxR` has `C` columns (vectors) and `R` rows
+- For alignment porposes, `matCxR` is equivalent to an array `vecR[C]`
+- bool has size 4, just like float or int!
+
+We have 3 types of alignment:
+- Scalar alignment
+- Base alignment (std430)
+- Extended alignment (std140, the default for uniform buffers)
+- Relaxed alignment
+
+### Scalar Alignment
+1) Basic types such as bool, float, int, or double have scalar alignment equal to it's size.
+2) A vector type has a scalar alignment equal to that of its component type
+3) An array type has a scalar alignment equal to that of its element type
+4) A structure has a scalar alignment equal to the largest scalar alignment of any of its members
+
+All these points are pretty obvious, except for 4 maybe. Point 4 implies that if our struct has a `double` then the scalar alignment becomes `8`.
+
+For using scalar alignment you need the `VK_EXT_scalar_block_layout` extension, which was promoted to core in Vulkan 1.2.
+In GLSL you also need to enable the corresponding extension:
+```glsl
+#extension GL_EXT_scalar_block_layout : enable
+layout (scalar, binding = 0) buffer block { }
+```
+
+### Base alignment
+1) A scalar has a base alignment equal to its scalar alignment
+2) A 2-component vector has a base alignment equal to x2 its scalar alignment
+3) A 3- or 4-component vector has a base alignment equal to four times its scalar alignment
+4) An array has a base alignment equal to the base alignment of its element type
+5) A structure has a base alignment equal to the largest base alignment of any of its members.
+
+From these set of rules, probably 3 and 4 are the most interesting.
+
+Rule 3 tells us that 3-component vectors are actually aligned as if they were 4-component vectors. Some people even argue that one should [avoid using vec3 altogether](https://stackoverflow.com/q/38172696/1754322) in interface blocks.
+
+Base alignment is the one used by default "push constants" and "storage buffers". In GLSL this type of alignment is know as std430.
+
+```glsl
+layout(set = 0, binding = 0) uniform MyUniforms {
+  // "uniform" uses scalar "extended alignment" by default (std140)
+  float myUniform0;
+  vec2 myUniforms1;
+};
+
+layout(set = 0, binding = 1) buffer MyStorageBuffer {
+  // push_constant uses "base alignment" by default (std140)
+  uint myStorageBuffer0;
+};
+
+layout(push_constant) uniform MyPushConstants {
+  // push_constant uses "base alignment" by default (std140)
+  mat4 myPushConstant;
+};
+
+```
+
+You can also use "base alignment" for uniform buffer through an extension `VK_KHR_uniform_buffer_standard_layout`. This extension has gone into `core` as for Vulkan 1.2.
+
+```
+layout(std430, set = 0, binding = 0) uniform MyUniforms {
+  float myUniform0;
+  vec2 myUniforms1;
+};
+```
+
+### Extended aligment
+1) A scalar or vector type has an extended alignment equal to its base alignment.
+2) An array or structure type has an extended alignment equal to the largest extended alignment of any of its members, rounded up to a multiple of 16.
+
+So basicaly, extended alignment is like "base alignment" but with that weird rounding rule. Which actually changes everything!
+
+And "extended alignment" (aka std140) is the default for uniform buffers!
+
+Example:
+
+```glsl
+struct MyData {
+  float x;
+};
+
+layout (set = 0, binding = 0) uniform MyUniforms {
+  MyData myData;
+  float y; // offset 16
+};
+```
+
+In the previous example, eventhough the struct has only one float (due to the rounding rule) it takes the space of a full vec4!
+
+### Relaxed alignment
+
+It's a small improvement to "base aligment" (std430) introduced in Vulkan 1.1. You don't need to do anything special to use "relaxed alignement" is automatically applies is you intend to use std430 and are using Vulkan 1.1+.
+
+In "base aligment" if you had a struct with a vec3 followed by a float:
+
+```glsl
+struct MyData {
+  vec3 abc;
+  float d;
+};
+```
+
+The two variables would be packed together nicely as if the where a vec4. But, due to the alignment rules, that wouldn't be the case id the order is reversed:
+
+```
+struct MyData {
+  float a;
+  vec3 bcd; // offset 16
+}
+```
+
+Relaxed alignement addressed this precisely this issue. So the 2 variables are packed nicely in a vec4 as well. Just a small quality of life improvement.
+
+
+
+Links about memory layout in Vulkan:
+- https://docs.vulkan.org/guide/latest/shader_memory_layout.html
+- https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#interfaces-resources-layout
+- https://www.reddit.com/r/vulkan/comments/wc0428/on_shader_memory_layout/
+- https://stackoverflow.com/questions/38172696/should-i-ever-use-a-vec3-inside-of-a-uniform-buffer-or-shader-storage-buffer-o
+- https://fvcaputo.github.io/2019/02/06/memory-alignment.html
+
 ## Pipelines
 
