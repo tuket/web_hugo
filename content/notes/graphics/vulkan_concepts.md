@@ -309,8 +309,6 @@ struct MyData {
 
 Relaxed alignement addressed this precisely this issue. So the 2 variables are packed nicely in a vec4 as well. Just a small quality of life improvement.
 
-
-
 Links about memory layout in Vulkan:
 - https://docs.vulkan.org/guide/latest/shader_memory_layout.html
 - https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#interfaces-resources-layout
