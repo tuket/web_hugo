@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Partial custom mipmap levels in OpenGL
-date: {}
+date: 2021-02-22
 published: true
 ---
 
