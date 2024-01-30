@@ -36,7 +36,7 @@ This is what the documentation says about it:
 timeout specifies how long the function waits, in nanoseconds, if no image is available
 ```
 
-The function will return `VK_TIMEOUT` if the image could not be acquired within `timeout` nanoseconds. If `timeout` is 0, we try to acquire the image immediately. And the function returns `VK_NOT_READY`, if the images could not be acquired at the time we call the function. If the image is successfully acquired the function returns `VK_SUCCESS`, and the index of the image is returned though the `pImageIndex` parameter.
+The function will return `VK_TIMEOUT` if the image could not be acquired within `timeout` nanoseconds. If `timeout` is 0, we try to acquire the image immediately. And the function returns `VK_NOT_READY` if the images could not be acquired at the time we call the function. If the image is successfully acquired the function returns `VK_SUCCESS`, and the index of the image is returned though the `pImageIndex` parameter.
 
 Here is the confusing part: even if the function successfully returns after some waiting/blocking on the CPU, that doesn't mean you can already draw to the image. The presentation engine could be still reading that image. You would also need to wait on the `fence` for that. So why the timeout if we need to wait on the fence anyways? The function returns when it **knows** what the index of the next image will be. But that doesn't mean you can use that image yet. For that you can use the `fence` and `semaphore` parameters.
 
