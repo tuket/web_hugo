@@ -99,7 +99,7 @@ This is essentially the same approach used in [Khronos Examples](https://github.
 
 Whenever you need to destroy a Vulkan resource, you need to keep in mind it might still be in use by previous frames!
 
-Without the need of any extra synchronization primitives, we can leverage our render loop to do safely destroy resources.
+Without the need of any extra synchronization primitives, we can leverage our render loop to destroy resources safely.
 
 Every time we want to destroy a resource, we will instead push the resource into a per-frame queue. After N frames, we can be sure that the resource is not being used by any cmd buffer.
 
@@ -121,9 +121,11 @@ while(true)
 
     for(auto buffer : toDestroy_buffers[scImgInd])
         destroy(buffer);
+    toDestroy_buffers[scImgInd].clear();
 
     for(auto image : toDestroy_images[scImgInd])
         destroy(image);
+    toDestroy_images[scImgInd].clear();
 
     //...
 }
