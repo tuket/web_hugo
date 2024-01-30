@@ -44,7 +44,7 @@ Here is the confusing part: even if the function successfully returns after some
 
 The whole point of double buffering (or N-buffering) is to be able to draw consecutive frames in parallel. If your swapchain has N images, you should have at least one **command buffer** for each of them. You could have N+1 command buffers, if you would like to start recording commands for the next frame while we are rendering the N previous frames. But I don't think this is necessary.
 
-It's also worth considering using a **command pool** per swapchain image. This way you can reset the whole pool every frame. It should be quicker that resetting individual command buffers.
+It's also worth considering using a **command pool** per swapchain image. This way you can reset the whole pool every frame. It should be quicker than resetting individual command buffers.
 
 ## Use a fences to limit the FPS
 
