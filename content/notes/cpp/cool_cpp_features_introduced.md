@@ -5,8 +5,6 @@ date: 2024-01-18
 published: false
 ---
 
-https://github.com/AnthonyCalandra/modern-cpp-features
-
 # C++11
 
 - Lambdas
@@ -36,3 +34,7 @@ https://github.com/AnthonyCalandra/modern-cpp-features
 # C++17
 - Guaranteed RVO copy elision
 - Inline variables
+
+# Links
+
+https://github.com/AnthonyCalandra/modern-cpp-features
