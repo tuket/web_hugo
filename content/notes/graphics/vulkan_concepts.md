@@ -2,7 +2,6 @@
 layout: page
 title: Vulkan Concepts
 date: 2022-08-23
-published: true
 toc: true
 ---
 

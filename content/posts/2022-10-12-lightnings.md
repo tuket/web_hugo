@@ -1,6 +1,5 @@
 ---
 layout: post
-published: true
 title: "Lightnings!"
 date: 2022-10-12
 ---

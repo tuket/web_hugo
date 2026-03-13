@@ -1,7 +1,7 @@
 ---
 title: Markdown Guide (modified)
 author: Open Source
-date: '0000-00-00'
+date: '0001-01-01'
 categories:
   - Example
 tags:

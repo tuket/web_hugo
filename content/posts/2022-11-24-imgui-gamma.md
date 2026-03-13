@@ -1,6 +1,5 @@
 ---
 layout: post
-published: true
 title: "ImGui gamma correction in OpenGL and Vulkan"
 date: 2022-11-24
 ---

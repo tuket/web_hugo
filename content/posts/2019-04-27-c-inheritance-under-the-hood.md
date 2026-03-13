@@ -1,8 +1,7 @@
 ---
 layout: post
-published: false
 title: C++ inheritance under the hood
-date: 27/4/2019
+date: 2019-04-27
 ---
 In this post we are going to explore how C++ inheritance works.
 

@@ -2,7 +2,6 @@
 layout: post
 title: "Vulkan render loop synchronization"
 date: 2024-01-24
-published: true
 ---
 
 One of the things I struggled the most when learning Vulkan is the **render loop synchronization**. For over 2 years I've been revisiting the topic many times. Every time, I though I had finally understood how to do it properly. But I see different approaches implemented in tutorials and examples out there, and some of them are buggy or sub-optimal.

@@ -2,7 +2,6 @@
 layout: page
 title: Partial custom mipmap levels in OpenGL
 date: 2021-02-22
-published: true
 ---
 
 OpenGL allows to automatically create mipmaps for you with `glGenMipmap`.

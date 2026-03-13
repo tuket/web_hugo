@@ -1,6 +1,5 @@
 ---
 layout: post
-published: true
 title: "Explosion Decals"
 date: 2022-08-05T21:15:50+02:00
 ---
