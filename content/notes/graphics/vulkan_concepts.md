@@ -131,9 +131,8 @@ The **host** and the **device** can access memory though buses.
 
 ```
 
-## Links
+### Links about memory availability and visibility
 
-- [What is the pipeline a vkCmdPipelineBarrier applies to?](https://stackoverflow.com/questions/49237258/what-is-the-pipeline-a-vkcmdpipelinebarrier-applies-to)
 - [Host write guarantees source access scope](https://stackoverflow.com/questions/61342339/host-write-guarantees-source-access-scope)
 - [Yet another blog explaining Vulkan synchronization - Maister](https://themaister.net/blog/2019/08/14/yet-another-blog-explaining-vulkan-synchronization/)
 - [Vulkan: vkCmdPipelineBarrier for data coherence](https://stackoverflow.com/questions/40577047/vulkan-vkcmdpipelinebarrier-for-data-coherence)
@@ -309,7 +308,7 @@ struct MyData {
 
 Relaxed alignement addressed this precisely this issue. So the 2 variables are packed nicely in a vec4 as well. Just a small quality of life improvement.
 
-Links about memory layout in Vulkan:
+### Links about memory layout:
 - https://docs.vulkan.org/guide/latest/shader_memory_layout.html
 - https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#interfaces-resources-layout
 - https://www.reddit.com/r/vulkan/comments/wc0428/on_shader_memory_layout/
@@ -318,3 +317,10 @@ Links about memory layout in Vulkan:
 
 ## Pipelines
 
+## Pipeline Barriers
+
+### Links about Pipeline Barriers
+- [Vulkan memory barriers and image layouts explained - Rastergrid](https://www.rastergrid.com/blog/gpu-tech/2026/03/vulkan-memory-barriers-and-image-layouts-explained/)
+- [Yet another blog explaining Vulkan synchronization - Maister](https://themaister.net/blog/2019/08/14/yet-another-blog-explaining-vulkan-synchronization/)
+- [What is the pipeline a vkCmdPipelineBarrier applies to?](https://stackoverflow.com/questions/49237258/what-is-the-pipeline-a-vkcmdpipelinebarrier-applies-to)
+- [Vulkan: vkCmdPipelineBarrier for data coherence](https://stackoverflow.com/questions/40577047/vulkan-vkcmdpipelinebarrier-for-data-coherence)
