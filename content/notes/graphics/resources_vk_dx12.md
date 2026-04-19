@@ -1054,3 +1054,5 @@ Let me know in the comments if you have any feedback or questions.
 - https://learn.microsoft.com/en-us/windows/win32/direct3d12/resource-binding-in-hlsl
 - https://stefanpijnacker.nl/article/directx12-resources-key-concepts/
 - https://logins.github.io/graphics/2020/07/31/DX12ResourceHandling.html
+- https://darkcorners.dev/buffers-vs-structuredbuffers
+- https://www.youtube.com/playlist?list=PLeHvwXyqearVU8fvo2Oq7otKDlLLDAaHW
